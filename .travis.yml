@@ -1,0 +1,30 @@
+language: android
+dist: trusty
+jdk: oraclejdk8
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-29.0.3
+    - android-30
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_install:
+  - nvm install 14.16.0
+  - node --version
+  - yes | sdkmanager "platforms;android-30"
+  - echo $KEYSTORE_CONTENT | base64 --decode > android/app/mooovit.keystore
+  - if ! [ -x "$(command -v aws)" ]; then curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" ; unzip awscliv2.zip ; sudo ./aws/install ; fi
+
+
+script:
+  - npm install
+  - npm test
+  - cd android
+  - ./gradlew bundleRelease
+  - pwd && ls -laR app/build/outputs
+  - aws s3 cp app/build/outputs/bundle/release/app-release.aab s3://mooovit-builds/mooovit-app-$TRAVIS_BUILD_NUMBER.aab

@@ -154,11 +154,13 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            def isRunningOnTravis = System.getenv("CI") == "true"
+
+            if (isRunningOnTravis) {
+                signingConfigs.release.storeFile = file("mooovit.keystore")
+                signingConfigs.release.storePassword = System.getenv("KEYSTORE_PASSWORD")
+                signingConfigs.release.keyAlias = System.getenv("KEYSTORE_ALIAS")
+                signingConfigs.release.keyPassword = System.getenv("KEYSTORE_PASSWORD")
             }
         }
     }
