@@ -156,6 +156,11 @@ android {
         release {
             def isRunningOnTravis = System.getenv("CI") == "true"
 
+            signingConfigs.release.storeFile = file("local.keystore")
+            signingConfigs.release.storePassword = "localkeystore"
+            signingConfigs.release.keyAlias = "local-keystore"
+            signingConfigs.release.keyPassword = "localkeystore"
+
             if (isRunningOnTravis) {
                 signingConfigs.release.storeFile = file("mooovit.keystore")
                 signingConfigs.release.storePassword = System.getenv("KEYSTORE_PASSWORD")

@@ -26,5 +26,4 @@ script:
   - npm test
   - cd android
   - ./gradlew bundleRelease
-  - pwd && ls -laR app/build/outputs
   - aws s3 cp app/build/outputs/bundle/release/app-release.aab s3://mooovit-builds/mooovit-app-$TRAVIS_BUILD_NUMBER.aab
