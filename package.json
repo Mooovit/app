@@ -6,7 +6,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "lint": "eslint ./src/ --ext=js,jsx,ts,tsx",
-    "linf": "yarn run lint --fix"
+    "linf": "yarn run lint --fix",
+    "test": "jest"
   },
   "dependencies": {
     "expo": "~42.0.0",
@@ -33,7 +34,11 @@
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "@testing-library/react-native": "^7.2.0",
+    "jest": "^27.0.6",
+    "jest-expo": "^42.0.1",
+    "react-test-renderer": "^17.0.2"
   },
   "private": true,
   "name": "app",
