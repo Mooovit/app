@@ -1,0 +1,6 @@
+ios/*
+assets/*
+android/*
+.expo-shared/*
+
+node_modules/*

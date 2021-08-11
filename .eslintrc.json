@@ -1,0 +1,67 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "jest",
+    "jasmine",
+    "prettier"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "prettier/prettier": 2,
+    "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+    "jest/lowercase-name": [
+      "error",
+      {
+        "ignore": ["describe"]
+      }
+    ],
+    "jest/valid-title": 2,
+    "jest/no-identical-title": 2,
+    "jasmine/new-line-before-expect": 2,
+    "jasmine/new-line-between-declarations": 2,
+    "react/require-default-props": [2, {
+      "forbidDefaultForRequired": true
+    }],
+    "prefer-const": 2,
+    "eqeqeq": 2,
+    "jest/expect-expect": 2,
+    "jest/no-commented-out-tests": 2,
+    "jest/no-conditional-expect": 2,
+    "jest/no-disabled-tests": 1,
+    "jest/no-export": 2,
+    "jest/no-jest-import": 2,
+    "jest/no-standalone-expect": 2,
+    "jest/prefer-to-be-null": 2,
+    "jest/prefer-to-be-undefined": 2,
+    "jest/valid-expect": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["./src/"],
+        "extensions": [
+          ".js",
+          ".jsx",
+          "tsx"
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    },
+    "import/ignore": ["react-native"]
+  }
+}
