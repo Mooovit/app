@@ -40,3 +40,6 @@ Then you can install it into your connected android / emulator
 ```
  bundletool install-apks --apks=app-release.apks
 ```
+
+## ENVIRONMENTS
+If you need to change the environments' variables, create your own `.env` as the current example `.env.sample`.
