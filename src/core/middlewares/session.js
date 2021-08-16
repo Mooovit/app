@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const localStorageKey = "tokenSession";
 
 class Session {
@@ -5,22 +7,22 @@ class Session {
     this._token = token;
   }
 
-  setToken(token) {
+  async setToken(token) {
     this._token = token;
-    window.localStorage.setItem(localStorageKey, token);
+    return await AsyncStorage.setItem(localStorageKey, token);
   }
 
-  getToken() {
+  async getToken() {
     if (this._token) {
       return this._token;
     }
 
-    return window.localStorage.getItem(localStorageKey);
+    return await AsyncStorage.getItem(localStorageKey);
   }
 
-  clearToken() {
+  async clearToken() {
     this._token = null;
-    window.localStorage.removeItem(localStorageKey);
+    return await AsyncStorage.removeItem(localStorageKey);
   }
 }
 

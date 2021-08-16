@@ -62,7 +62,9 @@ const SignIn = ({ onPress, loading, errors }) => {
         >
           SIGN IN
         </Button>
-        {errors ? <Text>One or many errors happened during the sign in process</Text>}
+        {errors ? (
+          <Text>One or many errors happened during the sign in process</Text>
+        ) : null}
       </ImageOverlay>
     </KeyboardAvoidingView>
   );
