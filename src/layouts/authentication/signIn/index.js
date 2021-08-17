@@ -10,6 +10,19 @@ const SignInContainer = ({ callback }) => {
 
   const handleOnPress = useCallback(
     ({ email, password }) => {
+      /* TODO : Remove this later ... that's just for easy debug on compiled application */
+      if (email.substr(0, 4) === "set#") {
+        const split = email.split("#");
+        const action = split[1];
+        const value = split[2];
+        switch (action) {
+          case "url":
+            apiInstance.setBaseURL(value);
+            break;
+        }
+        return;
+      }
+
       setLoading(true);
       apiInstance
         .post("/api/authenticate", {

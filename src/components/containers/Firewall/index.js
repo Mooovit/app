@@ -6,13 +6,18 @@ const Firewall = ({ children }) => {
   const { session, apiInstance } = useContext(ConfigurationContext);
   const orm = useContext(OrmContext);
   const ormSession = orm.session();
+  const [loading, setLoading] = useState(null);
+  const [token, setToken] = useState(null);
 
-  const [token, setToken] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+  }, []);
 
   useEffect(() => {
     (async () => {
       const token = await session.getToken();
       setToken(token);
+      setLoading(false);
     })();
   }, []);
 
@@ -47,7 +52,7 @@ const Firewall = ({ children }) => {
     [session]
   );
 
-  if (token === false) {
+  if (loading === true) {
     return null;
   }
 

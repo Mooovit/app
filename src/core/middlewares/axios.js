@@ -11,4 +11,9 @@ axiosInstance.setToken = (token) => {
   return axiosInstance;
 };
 
+axiosInstance.setBaseURL = (url) => {
+  axiosInstance.defaults.baseURL = url;
+  return axiosInstance;
+};
+
 export default axiosInstance;
