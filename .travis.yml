@@ -2,6 +2,10 @@ language: android
 dist: trusty
 jdk: oraclejdk8
 
+branches:
+  only:
+  - master
+
 android:
   components:
     - tools
@@ -23,7 +27,7 @@ before_install:
 
 script:
   - npm install
-  - npm test
+  - npm test --passWithNoTests
   - cd android
   - ./gradlew bundleRelease
   - aws s3 cp app/build/outputs/bundle/release/app-release.aab s3://mooovit-builds/mooovit-app-$TRAVIS_BUILD_NUMBER.aab
