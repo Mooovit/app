@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Input, Text } from "@ui-kitten/components";
+import {StyleSheet, Text, View} from "react-native";
+import { Button, Input } from "@ui-kitten/components";
 import { ImageOverlay } from "../extra/image-overlay.component";
 import { ArrowForwardIcon } from "../extra/icons";
 import { KeyboardAvoidingView } from "../extra/3rd-party";
