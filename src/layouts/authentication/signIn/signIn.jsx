@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import {StyleSheet, Text, View} from "react-native";
+import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
 import { Button, Input } from "@ui-kitten/components";
 import { ImageOverlay } from "../extra/image-overlay.component";
 import { ArrowForwardIcon } from "../extra/icons";
-import { KeyboardAvoidingView } from "../extra/3rd-party";
 import BoxImage from "../assets/boxes.jpg";
 import { LoadingIndicator } from "componentsUI/index";
 
@@ -13,8 +12,8 @@ const SignIn = ({ onPress, loading, errors }) => {
   const [password, setPassword] = useState("");
 
   return (
-    <KeyboardAvoidingView>
-      <ImageOverlay style={styles.container} source={BoxImage}>
+    <KeyboardAvoidingView style={styles.container}>
+      <ImageOverlay style={styles.imageOverlay} source={BoxImage}>
         <View style={styles.signInContainer}>
           <Text style={styles.signInLabel} status="control" category="h4">
             SIGN IN
@@ -73,8 +72,10 @@ const SignIn = ({ onPress, loading, errors }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 24,
-    paddingHorizontal: 16,
+  },
+  imageOverlay: {
+    flex: 1,
+    padding: 20,
   },
   signInContainer: {
     flexDirection: "row",
