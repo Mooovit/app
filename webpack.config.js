@@ -6,7 +6,10 @@ module.exports = async function (env, argv) {
     {
       ...env,
       babel: {
-        dangerouslyAddModulePathsToTranspile: ["@ui-kitten/components"],
+        dangerouslyAddModulePathsToTranspile: [
+            "@ui-kitten/components",
+          "node_modules/react-router-native",
+        ],
       },
     },
     argv
