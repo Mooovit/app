@@ -1,7 +1,7 @@
 import Config from "react-native-config";
 import axios from "axios";
 
-Config.API_URL = "https://mooovit-api.staging.matthieutirelli.fr";
+Config.API_URL = "https://mooovit-api.production.matthieutirelli.fr";
 const axiosInstance = axios.create({
   baseURL: Config.API_URL,
   timeout: 5000,
