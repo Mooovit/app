@@ -6,32 +6,34 @@ const Firewall = ({ children }) => {
   const { session, apiInstance } = useContext(ConfigurationContext);
   const orm = useContext(OrmContext);
   const ormSession = orm.session();
-  const [loading, setLoading] = useState(null);
+  const [fetchToken, setFetchToken] = useState(null);
   const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    setLoading(true);
-  }, []);
 
   useEffect(() => {
     (async () => {
       const token = await session.getToken();
       setToken(token);
-      setLoading(false);
+      setFetchToken(true);
     })();
   }, []);
 
   const fetchUserData = async () => {
-    const response = await apiInstance.setToken(token).get("/api/user");
-    if (response?.status === 200) {
-      /* We fetch the user */
-      const { user } = response?.data;
-      /* We create the ORM User */
-      ormSession.User.create(user);
-      /* We create the ORM Teams */
-      [...user.owned_teams, ...user.teams].forEach((team) =>
-        ormSession.Team.create(team)
-      );
+    try {
+      const response = await apiInstance.setToken(token).get("/api/user");
+
+      if (response?.status === 200) {
+        /* We fetch the user */
+        const { user } = response?.data;
+        /* We create the ORM User */
+        ormSession.User.create(user);
+        /* We create the ORM Teams */
+        [...user.owned_teams, ...user.teams].forEach((team) =>
+          ormSession.Team.create(team)
+        );
+      }
+    } catch (err) {
+      setToken(null);
+      await session.clearToken();
     }
   };
 
@@ -52,11 +54,7 @@ const Firewall = ({ children }) => {
     [session]
   );
 
-  if (loading === true) {
-    return null;
-  }
-
-  if (token === null) {
+  if (token === null && fetchToken === true) {
     return <SignInContainer callback={connectCallback} />;
   }
 
